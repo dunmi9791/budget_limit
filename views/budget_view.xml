@@ -5,7 +5,7 @@
 		<record model="ir.ui.view" id="crossovered_budget_form_inherit">
 			<field name="name">crossovered.budget.form</field>
 			<field name="model">crossovered.budget</field>
-			<field name="inherit_id" ref="budget_limit.crossovered_budget_view_form"/>
+			<field name="inherit_id" ref="om_account_budget.crossovered_budget_view_form"/>
 			<field name="arch" type="xml">
 				<xpath expr="//field[@name='crossovered_budget_line']/tree//field[@name='analytic_account_id']" position="after">
 					<field name="warning_type"/>
