@@ -36,13 +36,13 @@ class PurchaseOrder(models.Model):
                     for bline in budget.crossovered_budget_line.filtered(lambda bline: bline.is_active == True):
                         if self.order_line:                     
                             for pline in self.order_line:
-                                if bline.warning_type == 'warning' and bline.analytic_account_id == pline.account_analytic_id and pline.price_subtotal >= (bline.planned_amount - abs(bline.practical_amount)):
+                                if bline.warning_type == 'warning' and bline.analytic_account_id == pline.account_analytic_id and pline.price_subtotal >= (bline.released_amount - abs(bline.practical_amount)):
                                     if  pline.product_id.name not in pname:
                                         pname.append(pline.product_id.name)
                                     self.is_warning = True
                                     flag_w = True
                                 
-                                if bline.warning_type == 'restrict' and bline.analytic_account_id == pline.account_analytic_id and pline.price_subtotal >= (bline.planned_amount - abs(bline.practical_amount)) and not bline.allow2_manager:
+                                if bline.warning_type == 'restrict' and bline.analytic_account_id == pline.account_analytic_id and pline.price_subtotal >= (bline.released_amount - abs(bline.practical_amount)) and not bline.allow2_manager:
                                     if pline.product_id.name not in ppname:
                                         ppname.append(pline.product_id.name)
                                     flag = True
@@ -85,13 +85,13 @@ class AccountInvoice(models.Model):
                     for bline in budget.crossovered_budget_line.filtered(lambda bline: bline.is_active == True):
                         if self.invoice_line_ids:
                             for iline in self.invoice_line_ids:
-                                if bline.warning_type == 'warning' and bline.analytic_account_id == iline.account_analytic_id and iline.price_subtotal >= (bline.planned_amount - abs(bline.practical_amount)):
+                                if bline.warning_type == 'warning' and bline.analytic_account_id == iline.account_analytic_id and iline.price_subtotal >= (bline.released_amount - abs(bline.practical_amount)):
                                     if iline.account_id.name not in acc_name:
                                         acc_name.append(iline.account_id.name)
                                     self.is_warning = True
                                     flag_w = True
 
-                                if bline.warning_type == 'restrict' and bline.analytic_account_id == iline.account_analytic_id and iline.price_subtotal >= (bline.planned_amount - abs(bline.practical_amount)) and not bline.allow2_manager:
+                                if bline.warning_type == 'restrict' and bline.analytic_account_id == iline.account_analytic_id and iline.price_subtotal >= (bline.released_amount - abs(bline.practical_amount)) and not bline.allow2_manager:
                                     if iline.account_id.name not in acc_name_res:
                                         acc_name_res.append(iline.account_id.name)
                                     flag = True
