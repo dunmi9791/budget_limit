@@ -11,7 +11,7 @@
         Allow Accounting Budget Limit Alert/Warning on  confirm Purchase Order and validate Vendor Bill
     """,
     "license" : "OPL-1",
-    'depends' : ['base','purchase','account','stock', 'om_account_budget'],
+    'depends' : ['base','purchase','account','stock', 'om_account_budget', 'nbet_custom'],
     'data': [
             'security/ir.model.access.csv',
             'security/account_budget_security.xml',
